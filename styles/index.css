@@ -1,0 +1,32 @@
+/* --- RESETS --- */
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* --- TYPOGRAPHY --- */
+@font-face {
+    src: url('../assets/fonts/dunkin-sans.ttf');
+    font-family: DunkinSans;
+}
+
+h1 {
+    font-family: DunkinSans, sans-serif;
+}
+
+
+.header-container {
+    background-image: url("../assets/images/donut-shop.png");
+    background-size: 100%;
+    background-position: left;
+    width: 100%;
+    padding: 2em;
+}
