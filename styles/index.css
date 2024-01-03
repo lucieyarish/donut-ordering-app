@@ -12,21 +12,55 @@ body {
     overflow-x: hidden;
 }
 
+/* --- GENERAL SETUP --- */
+:root {
+    /* Fonts */
+    --font-primary: 'Verdana', sans-serif;
+    --font-secondary: 'Sniglet', sans-serif;
+    /* Font weight */
+    --font-weight-regular: 400;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 800;
+    /* Font colors */
+    --white: #FFF;
+    --white-semi-transparent: #ffffffd0;
+    --donut-pink: #FC546D;
+    --dark-grey: #514E4E;
+    /* Border radius */
+    --border-radius-3: 3px;
+    --border-radius-5: 5px;
+}
+
 /* --- TYPOGRAPHY --- */
-@font-face {
-    src: url('../assets/fonts/dunkin-sans.ttf');
-    font-family: DunkinSans;
+.title,
+.subtitle {
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-regular);
+    margin: 0;
 }
 
-h1 {
-    font-family: DunkinSans, sans-serif;
+.title {
+    color: var(--donut-pink);
+    font-size: 2rem;
 }
 
+.subtitle {
+    color: var(--dark-grey);
+    font-size: 1.2rem;
+}
 
+/* --- HEADER --- */
 .header-container {
     background-image: url("../assets/images/donut-shop.png");
     background-size: 100%;
     background-position: left;
     width: 100%;
-    padding: 2em;
+    padding: 1.5em;
+}
+
+.header-background {
+    display: inline-block;
+    background: var(--white-semi-transparent);
+    border-radius: var(--border-radius-5);
+    padding: 0.5em 1em;
 }
