@@ -12,12 +12,26 @@ body {
     overflow-x: hidden;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
 /* --- GENERAL SETUP --- */
 :root {
     /* Fonts */
     --font-primary: 'Verdana', sans-serif;
     --font-secondary: 'Sniglet', sans-serif;
     /* Font weight */
+    --font-weight-light: 200;
     --font-weight-regular: 400;
     --font-weight-semi-bold: 600;
     --font-weight-bold: 800;
@@ -25,27 +39,54 @@ body {
     --white: #FFF;
     --white-semi-transparent: #ffffffd0;
     --donut-pink: #FC546D;
-    --dark-grey: #514E4E;
+    --grey-dark: #514E4E;
+    --grey-light: #8B8B9B;
+    --grey-light-2: #DEDEDE;
     /* Border radius */
     --border-radius-3: 3px;
     --border-radius-5: 5px;
+    --border-radius-50: 50px;
 }
 
 /* --- TYPOGRAPHY --- */
-.title,
-.subtitle {
+.logo-title,
+.logo-subtitle {
     font-family: var(--font-secondary);
     font-weight: var(--font-weight-regular);
-    margin: 0;
 }
 
-.title {
+.logo-title {
     color: var(--donut-pink);
     font-size: 2rem;
 }
 
-.subtitle {
-    color: var(--dark-grey);
+.logo-subtitle {
+    color: var(--grey-dark);
+    font-size: 1.2rem;
+}
+
+.item-name,
+.item-ingredients,
+.item-price {
+    font-family: var(--font-primary);
+}
+
+.item-name {
+    font-weight: var(--font-weight-regular);
+    font-size: 1rem;
+    margin-bottom: 0.2em;
+}
+
+.item-ingredients {
+    color: var(--grey-light);
+    font-size: 0.8rem;
+    text-transform: lowercase;
+    font-weight: var(--font-weight-light);
+    margin-bottom: 0.6em;
+}
+
+.item-price {
+    font-weight: var(--font-weight-regular);
     font-size: 1.2rem;
 }
 
@@ -63,4 +104,39 @@ body {
     background: var(--white-semi-transparent);
     border-radius: var(--border-radius-5);
     padding: 0.5em 1em;
+}
+
+/* --- LAYOUT --- */
+.menu-container {
+    padding: 1.5em;
+}
+
+.menu-item-container {
+    display: grid;
+    grid-template-columns: 22% 63% 15%;
+    align-items: center;
+    padding: 1em 0;
+    border-bottom: 0.5px solid var(--grey-light-2);
+}
+
+.menu-item-description {
+    align-self: start;
+    padding-left: 0.5em;
+}
+
+/* --- IMAGES --- */
+.menu-item-img {
+    max-width: 80px;
+    border-radius: var(--border-radius-3);
+}
+
+/* --- BUTTONS AND LINKS --- */
+.btn-add {
+    border-radius: var(--border-radius-50);
+    height: 35px;
+    width: 35px;
+    background-color: var(--white);
+    border: 0.5px solid var(--grey-light-2);
+    font-size: 1.3rem;
+    justify-self: end;
 }
