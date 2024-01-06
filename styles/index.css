@@ -37,6 +37,7 @@ p {
     --font-weight-bold: 800;
     /* Font colors */
     --white: #FFF;
+    --black: #000;
     --white-semi-transparent: #ffffffd0;
     --donut-pink: #FC546D;
     --donut-pink-light: #F28C9B;
@@ -47,6 +48,10 @@ p {
     --border-radius-3: 3px;
     --border-radius-5: 5px;
     --border-radius-50: 50px;
+}
+
+body {
+    font-family: var(--font-primary);
 }
 
 /* --- TYPOGRAPHY --- */
@@ -66,13 +71,6 @@ p {
     font-size: 1.2rem;
 }
 
-.item-name,
-.item-ingredients,
-.item-price,
-.btn-primary {
-    font-family: var(--font-primary);
-}
-
 .item-name {
     font-weight: var(--font-weight-regular);
     font-size: 1rem;
@@ -90,6 +88,28 @@ p {
 .item-price {
     font-weight: var(--font-weight-regular);
     font-size: 1.2rem;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.2em;
+}
+
+.total-items,
+.combo-discount-container,
+.total-price-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.8em 0;
+}
+
+.text-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.text-size-20 {
+    font-size: 1.25rem;
 }
 
 /* --- HEADER --- */
@@ -124,6 +144,15 @@ p {
 .menu-item-description {
     align-self: start;
     padding-left: 0.5em;
+}
+
+.total-container {
+    padding: 0 1.5em
+}
+
+.combo-discount-container,
+.total-price-container {
+    padding-top: 0.7em;
 }
 
 /* --- IMAGES --- */
@@ -195,4 +224,20 @@ p {
 
 .border-bottom-grey {
     border-bottom: 0.5px solid var(--grey-light-2);
+}
+
+.border-bottom-black {
+    border-bottom: 2px solid var(--black);
+}
+
+.border-top-grey {
+    border-top: 0.5px solid var(--grey-light-2);
+}
+
+.border-top-black {
+    border-top: 2px solid var(--black);
+}
+
+.padding-top-24 {
+    padding-top: 1.5em;
 }

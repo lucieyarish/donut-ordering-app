@@ -7,6 +7,7 @@ export const menu = [
     ingredients: ['fresh strawberries', 'strawberry buttercream frosting'],
     price: 7,
     isVegan: false,
+    isFood: true,
   },
   {
     uuid: 'c27a2b16-da1e-4f52-b868-abf2c6720fa9',
@@ -17,6 +18,7 @@ export const menu = [
     ingredients: ['peanuts', 'vegan caramel frosting'],
     price: 7,
     isVegan: true,
+    isFood: true,
   },
   {
     uuid: 'f1f4ab39-ce2b-4ccb-816b-baaa1a79ab86',
@@ -27,6 +29,7 @@ export const menu = [
     ingredients: ['fresh blueberries', 'vegan blueberry frosting'],
     price: 7,
     isVegan: true,
+    isFood: true,
   },
   {
     uuid: '516ba349-3ec0-463d-b831-c2e3425d10ab',
@@ -37,6 +40,7 @@ export const menu = [
     ingredients: ['espresso', 'steamed milk', 'foam'],
     price: 5,
     isVegan: false,
+    isFood: false,
   },
   {
     uuid: '4fb25831-6d9e-4aa0-9f29-56da3d14be63',
@@ -47,5 +51,6 @@ export const menu = [
     ingredients: ['plant-based oat milk for your coffee'],
     price: 0,
     isVegan: true,
+    isFood: false,
   },
 ];

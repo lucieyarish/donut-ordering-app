@@ -71,8 +71,8 @@ const renderMenu = () => {
   menuItemsContainer.addEventListener('click', function (e) {
     if (e.target.id) {
       const itemToAdd = menu.find((i) => i.uuid === e.target.id);
+      //TODO: do not allow adding free oat milk to cart
       cartItems.push(itemToAdd);
-      //TODO: only perform these 3 steps after amount of cartItems changes from 0 to 1
       if (cartItems.length === 1) {
         checkoutBtn.disabled = false;
         checkoutBtn.classList.remove('btn-disabled');
@@ -83,6 +83,82 @@ const renderMenu = () => {
 };
 
 renderMenu();
+
+const calculateTotal = () => {
+  return cartItems.reduce((total, currentItem) => total + currentItem.price, 0);
+};
+
+const calculateComboDiscount = (total) => {
+  const discountedTotal = total - (total / 100) * 15;
+
+  return discountedTotal;
+};
+
+const renderComboDiscountInfo = () => {
+  return `
+        <div class="combo-discount-container border-top-grey">
+            <p>Donut + drink combo discount</p>
+            <p>-15%</p>
+        </div>
+    `;
+};
+
+const renderTotal = (total) => {
+  return `
+        <div class="total-price-container border-top-black">
+            <p class="text-bold text-size-20">Total price:</p>
+            <p class="text-bold text-size-20">$${total}</p>
+        </div>
+    `;
+};
+
+const renderPriceSummary = () => {
+  const totalSection = document.createElement('section');
+  totalSection.classList.add('total-container');
+  mainContainer.appendChild(totalSection);
+  totalSection.innerHTML = `
+          <h2 class="section-title border-top-grey padding-top-24">Your order</h2>
+          <div id="total-items"><div>
+      `;
+
+  const totalItems = document.getElementById('total-items');
+
+  const totalHtml = cartItems
+    .map((item) => {
+      return `
+        <div class="total-items">
+            <p>${item.name}</p>
+            <p>$${item.price}</p>
+        </div>
+      `;
+    })
+    .join('');
+
+  totalItems.innerHTML = totalHtml;
+
+  const isCombo =
+    cartItems.some((i) => i.isFood) &&
+    cartItems.some((i) => !i.isFood && i.price !== 0);
+
+  const total = calculateTotal();
+  let discountedTotal = 0;
+
+  if (isCombo) {
+    //TODO: Only apply -15% per drink-donut pair
+    //Find all drink-donut pairs in cartItems
+    //Get total of all pairs & apply -15%
+    //Add total price of remaining items
+    discountedTotal = calculateComboDiscount(total);
+
+    totalItems.innerHTML += renderComboDiscountInfo();
+  }
+
+  if (discountedTotal > 0) {
+    totalItems.innerHTML += renderTotal(discountedTotal);
+  } else {
+    totalItems.innerHTML += renderTotal(total);
+  }
+};
 
 const renderOrder = () => {
   const orderHtml = cartItems
@@ -110,4 +186,6 @@ const renderOrder = () => {
     .join('');
 
   menuItemsContainer.innerHTML += orderHtml;
+
+  renderPriceSummary();
 };
