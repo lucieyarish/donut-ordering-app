@@ -57,7 +57,7 @@ p {
 
 .logo-title {
     color: var(--donut-pink);
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .logo-subtitle {
@@ -117,6 +117,7 @@ p {
     align-items: center;
     padding: 1em 0;
     border-bottom: 0.5px solid var(--grey-light-2);
+    position: relative;
 }
 
 .menu-item-description {
@@ -130,6 +131,10 @@ p {
     border-radius: var(--border-radius-3);
 }
 
+.badge-img {
+    width: 18px;
+}
+
 /* --- BUTTONS AND LINKS --- */
 .btn-add {
     border-radius: var(--border-radius-50);
@@ -139,4 +144,11 @@ p {
     border: 0.5px solid var(--grey-light-2);
     font-size: 1.3rem;
     justify-self: end;
+}
+
+.btn-add:hover,
+.btn-add:focus {
+    background: var(--donut-pink);
+    color: var(--white);
+    border: none;
 }

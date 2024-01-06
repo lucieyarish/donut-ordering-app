@@ -17,18 +17,25 @@ const renderHeader = () => {
 renderHeader();
 
 const renderMenu = () => {
+  const badgePath = '../assets/images/vegan-badge.png';
+  const veganBadge = `<img src="${badgePath}" class="badge-img">`;
   const menuHtml = menu
     .map((item) => {
+      const ingredients = item.ingredients.join(', ');
       return `
-        <li>
+        <li >
             <div class="menu-item-container">
-                <img src="${item.image}" class="menu-item-img"alt="${item.altText}">
+                <img src="${item.image}" class="menu-item-img"alt="${
+        item.altText
+      }">
                 <div class="menu-item-description">
-                    <h3 class="item-name">${item.name}</h3>
-                    <p class="item-ingredients">${item.ingredients}</p>
+                    <h3 class="item-name">${item.name}
+                    <span>${item.isVegan ? veganBadge : ''}</span>
+                    </h3>
+                    <p class="item-ingredients">${ingredients}</p>
                     <h4 class="item-price">$${item.price}</h4>
                 </div>
-                <button class="btn-add">+</button>
+                <button id="${item.uuid}" class="btn-add">+</button>
             </div>
         </li>
     `;
