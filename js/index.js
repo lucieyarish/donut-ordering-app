@@ -3,6 +3,8 @@ import { menu } from './data.js';
 const header = document.getElementById('header');
 const menuContainer = document.getElementById('menu-container');
 
+const cartItems = [];
+
 const renderHeader = () => {
   const headerHtml = `
         <div class="header-background">
@@ -46,3 +48,11 @@ const renderMenu = () => {
 };
 
 renderMenu();
+
+menuContainer.addEventListener('click', function (e) {
+  if (e.target.id) {
+    const itemToAdd = menu.find((i) => i.uuid === e.target.id);
+    cartItems.push(itemToAdd);
+    console.log(cartItems);
+  }
+});
