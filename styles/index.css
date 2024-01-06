@@ -109,7 +109,7 @@ p {
 }
 
 /* --- LAYOUT --- */
-.menu-container {
+.main-container {
     padding: 1.5em;
 }
 
@@ -138,7 +138,7 @@ p {
 }
 
 /* --- BUTTONS AND LINKS --- */
-.btn-add {
+.btn-cart {
     border-radius: var(--border-radius-50);
     height: 35px;
     width: 35px;
@@ -148,14 +148,14 @@ p {
     justify-self: end;
 }
 
-.btn-add:hover,
-.btn-add:focus {
+.btn-cart:hover,
+.btn-cart:focus {
     background: var(--donut-pink);
     color: var(--white);
     border: none;
 }
 
-.btn-add,
+.btn-cart,
 .btn-primary {
     cursor: pointer;
 }
@@ -180,6 +180,16 @@ p {
     background: var(--donut-pink-light);
 }
 
-.btn-primary.btn-active:hover {
+.btn-primary.btn-active:hover,
+.btn-primary.btn-active:focus    {
     letter-spacing: 5px;
+}
+
+.btn-remove {
+    padding-bottom: 0.2em;
+}
+
+/* --- UTILITIES --- */
+.border-hidden {
+    border: none;
 }
