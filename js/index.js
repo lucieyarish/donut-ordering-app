@@ -66,23 +66,23 @@ const renderMenu = () => {
   menuItemsContainer.innerHTML += menuHtml;
 
   const checkoutBtn = createCheckoutBtn();
-
   menuItemsContainer.appendChild(checkoutBtn);
+
+  menuItemsContainer.addEventListener('click', function (e) {
+    if (e.target.id) {
+      const itemToAdd = menu.find((i) => i.uuid === e.target.id);
+      cartItems.push(itemToAdd);
+      //TODO: only perform these 3 steps after amount of cartItems changes from 0 to 1
+      if (cartItems.length === 1) {
+        checkoutBtn.disabled = false;
+        checkoutBtn.classList.remove('btn-disabled');
+        checkoutBtn.classList.add('btn-active');
+      }
+    }
+  });
 };
 
 renderMenu();
-
-menuItemsContainer.addEventListener('click', function (e) {
-  if (e.target.id) {
-    const checkoutBtn = document.getElementById('btn-checkout');
-    const itemToAdd = menu.find((i) => i.uuid === e.target.id);
-    cartItems.push(itemToAdd);
-    //TODO: only perform these 3 steps after amount of cartItems changes from 0 to 1
-    checkoutBtn.disabled = false;
-    checkoutBtn.classList.remove('btn-disabled');
-    checkoutBtn.classList.add('btn-active');
-  }
-});
 
 const renderOrder = () => {
   const orderHtml = cartItems
