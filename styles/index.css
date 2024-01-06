@@ -39,6 +39,7 @@ p {
     --white: #FFF;
     --white-semi-transparent: #ffffffd0;
     --donut-pink: #FC546D;
+    --donut-pink-light: #F28C9B;
     --grey-dark: #514E4E;
     --grey-light: #8B8B9B;
     --grey-light-2: #DEDEDE;
@@ -67,7 +68,8 @@ p {
 
 .item-name,
 .item-ingredients,
-.item-price {
+.item-price,
+.btn-primary {
     font-family: var(--font-primary);
 }
 
@@ -151,4 +153,33 @@ p {
     background: var(--donut-pink);
     color: var(--white);
     border: none;
+}
+
+.btn-add,
+.btn-primary {
+    cursor: pointer;
+}
+
+.btn-primary {
+    width: 100%;
+    display: block;
+    color: var(--white);
+    padding: 0.9em;
+    margin-top: 1.3em;
+    text-align: center;
+    border-radius: var(--border-radius-3);
+    font-weight: var(--font-weight-bold);
+    transition: all .25s;
+}
+
+.btn-active {
+    background: var(--donut-pink);
+}
+
+.btn-disabled {
+    background: var(--donut-pink-light);
+}
+
+.btn-primary.btn-active:hover {
+    letter-spacing: 5px;
 }

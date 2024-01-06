@@ -2,6 +2,7 @@ import { menu } from './data.js';
 
 const header = document.getElementById('header');
 const menuContainer = document.getElementById('menu-container');
+const checkoutBtn = document.getElementById('btn-checkout');
 
 const cartItems = [];
 
@@ -53,6 +54,9 @@ menuContainer.addEventListener('click', function (e) {
   if (e.target.id) {
     const itemToAdd = menu.find((i) => i.uuid === e.target.id);
     cartItems.push(itemToAdd);
-    console.log(cartItems);
+    //TODO: only perform these 3 steps after amount of cartItems changes from 0 to 1
+    checkoutBtn.disabled = false;
+    checkoutBtn.classList.remove('btn-disabled');
+    checkoutBtn.classList.add('btn-active');
   }
 });
