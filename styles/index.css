@@ -109,7 +109,7 @@ p {
 }
 
 /* --- LAYOUT --- */
-.main-container {
+.menu-items-container {
     padding: 1.5em;
 }
 
@@ -118,7 +118,6 @@ p {
     grid-template-columns: 22% 63% 15%;
     align-items: center;
     padding: 1em 0;
-    border-bottom: 0.5px solid var(--grey-light-2);
     position: relative;
 }
 
@@ -192,4 +191,8 @@ p {
 /* --- UTILITIES --- */
 .border-hidden {
     border: none;
+}
+
+.border-bottom-grey {
+    border-bottom: 0.5px solid var(--grey-light-2);
 }

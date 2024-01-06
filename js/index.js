@@ -2,6 +2,7 @@ import { menu } from './data.js';
 
 const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
+const menuItemsContainer = document.getElementById('menu-items-container');
 
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
@@ -21,13 +22,30 @@ const renderHeader = () => {
 
 renderHeader();
 
+const createCheckoutBtn = () => {
+  const checkoutBtn = document.createElement('btn');
+  checkoutBtn.classList.add('btn-primary');
+  checkoutBtn.classList.add('btn-disabled');
+  checkoutBtn.disabled = true;
+  checkoutBtn.innerText = 'Checkout';
+
+  checkoutBtn.addEventListener('click', function () {
+    if (!checkoutBtn.disabled) {
+      menuItemsContainer.innerHTML = '';
+      renderOrder();
+    }
+  });
+
+  return checkoutBtn;
+};
+
 const renderMenu = () => {
   const menuHtml = menu
     .map((item) => {
       const ingredients = item.ingredients.join(', ');
       return `
         <li >
-            <div class="menu-item-container">
+            <div class="menu-item-container border-bottom-grey">
                 <img src="${item.image}" class="menu-item-img"alt="${
         item.altText
       }">
@@ -45,17 +63,16 @@ const renderMenu = () => {
     })
     .join('');
 
-  mainContainer.innerHTML += menuHtml;
-  mainContainer.innerHTML += `
-    <btn id="btn-checkout" class="btn-primary btn-disabled" disabled>
-        Checkout
-    </btn>
-`;
+  menuItemsContainer.innerHTML += menuHtml;
+
+  const checkoutBtn = createCheckoutBtn();
+
+  menuItemsContainer.appendChild(checkoutBtn);
 };
 
 renderMenu();
 
-mainContainer.addEventListener('click', function (e) {
+menuItemsContainer.addEventListener('click', function (e) {
   if (e.target.id) {
     const checkoutBtn = document.getElementById('btn-checkout');
     const itemToAdd = menu.find((i) => i.uuid === e.target.id);
@@ -92,10 +109,5 @@ const renderOrder = () => {
     })
     .join('');
 
-  mainContainer.innerHTML += orderHtml;
+  menuItemsContainer.innerHTML += orderHtml;
 };
-
-document.getElementById('btn-checkout').addEventListener('click', function () {
-  mainContainer.innerHTML = '';
-  renderOrder();
-});
