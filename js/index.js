@@ -32,7 +32,7 @@ const createCheckoutBtn = () => {
   checkoutBtn.addEventListener('click', function () {
     if (!checkoutBtn.disabled) {
       menuItemsContainer.innerHTML = '';
-      renderOrder();
+      renderOrder(cartItems);
     }
   });
 
@@ -40,6 +40,7 @@ const createCheckoutBtn = () => {
 };
 
 const renderMenu = () => {
+  menuItemsContainer.innerHTML = '';
   const menuHtml = menu
     .map((item) => {
       const ingredients = item.ingredients.join(', ');
@@ -69,14 +70,28 @@ const renderMenu = () => {
   menuItemsContainer.appendChild(checkoutBtn);
 
   menuItemsContainer.addEventListener('click', function (e) {
-    if (e.target.id) {
-      const itemToAdd = menu.find((i) => i.uuid === e.target.id);
-      //TODO: do not allow adding free oat milk to cart
+    if (e.target.classList.contains('btn-cart')) {
+      //TODO: refactor: extract into function
+      const itemToAdd = menu.find((item) => item.uuid === e.target.id);
       cartItems.push(itemToAdd);
       if (cartItems.length === 1) {
         checkoutBtn.disabled = false;
         checkoutBtn.classList.remove('btn-disabled');
         checkoutBtn.classList.add('btn-active');
+      }
+    }
+    if (e.target.classList.contains('btn-remove')) {
+      //TODO: refactor: extract into function
+      const itemIdToRemove = e.target.id;
+
+      const updatedCartItems = cartItems.filter(
+        (item) => item.uuid !== itemIdToRemove
+      );
+
+      if (updatedCartItems.length < cartItems.length) {
+        cartItems.length = 0;
+        cartItems.push(...updatedCartItems);
+        renderOrder();
       }
     }
   });
@@ -103,6 +118,7 @@ const renderComboDiscountInfo = () => {
     `;
 };
 
+//TODO: do not render when rerendering after item removal and when current cart items length is 0
 const renderTotal = (total) => {
   return `
         <div class="total-price-container border-top-black">
@@ -116,6 +132,7 @@ const renderPriceSummary = () => {
   const totalSection = document.createElement('section');
   totalSection.classList.add('total-container');
   mainContainer.appendChild(totalSection);
+  //TODO: do not render when rerendering after item removal
   totalSection.innerHTML = `
           <h2 class="section-title border-top-grey padding-top-24">Your order</h2>
           <div id="total-items"><div>
@@ -161,6 +178,7 @@ const renderPriceSummary = () => {
 };
 
 const renderOrder = () => {
+  menuItemsContainer.innerHTML = '';
   const orderHtml = cartItems
     .map((item) => {
       const ingredients = item.ingredients.join(', ');
