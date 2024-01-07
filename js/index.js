@@ -9,6 +9,8 @@ const veganBadge = `<img src="${badgePath}" class="badge-img">`;
 
 const cartItems = [];
 
+let isOrderRendered;
+
 const renderHeader = () => {
   const headerHtml = `
         <div class="header-background">
@@ -24,6 +26,7 @@ renderHeader();
 
 const createCheckoutBtn = () => {
   const checkoutBtn = document.createElement('btn');
+  checkoutBtn.setAttribute('id', 'checkout-btn');
   checkoutBtn.classList.add('btn-primary');
   checkoutBtn.classList.add('btn-disabled');
   checkoutBtn.disabled = true;
@@ -33,10 +36,46 @@ const createCheckoutBtn = () => {
     if (!checkoutBtn.disabled) {
       menuItemsContainer.innerHTML = '';
       renderOrder(cartItems);
+      renderPriceSummaryTitle();
+      renderPriceSummary();
     }
   });
 
   return checkoutBtn;
+};
+
+const addToCart = (id) => {
+  const itemToAdd = menu.find((item) => item.uuid === id);
+  const checkoutBtn = document.getElementById('checkout-btn');
+  cartItems.push(itemToAdd);
+  if (cartItems.length === 1) {
+    checkoutBtn.disabled = false;
+    checkoutBtn.classList.remove('btn-disabled');
+    checkoutBtn.classList.add('btn-active');
+  }
+};
+
+const removeFromCart = (id) => {
+  const itemIdToRemove = id;
+
+  const updatedCartItems = cartItems.filter(
+    (item) => item.uuid !== itemIdToRemove
+  );
+
+  if (updatedCartItems.length < cartItems.length) {
+    cartItems.length = 0;
+    cartItems.push(...updatedCartItems);
+    document.getElementById('total-container').innerHTML = '';
+
+    if (!isOrderRendered) {
+      renderOrder();
+      renderPriceSummaryTitle();
+      renderPriceSummary();
+      isOrderRendered = true;
+    } else {
+      renderOrder();
+    }
+  }
 };
 
 const renderMenu = () => {
@@ -70,29 +109,11 @@ const renderMenu = () => {
   menuItemsContainer.appendChild(checkoutBtn);
 
   menuItemsContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('btn-cart')) {
-      //TODO: refactor: extract into function
-      const itemToAdd = menu.find((item) => item.uuid === e.target.id);
-      cartItems.push(itemToAdd);
-      if (cartItems.length === 1) {
-        checkoutBtn.disabled = false;
-        checkoutBtn.classList.remove('btn-disabled');
-        checkoutBtn.classList.add('btn-active');
-      }
+    if (e.target.classList.contains('btn-cart') && e.target.id) {
+      addToCart(e.target.id);
     }
-    if (e.target.classList.contains('btn-remove')) {
-      //TODO: refactor: extract into function
-      const itemIdToRemove = e.target.id;
-
-      const updatedCartItems = cartItems.filter(
-        (item) => item.uuid !== itemIdToRemove
-      );
-
-      if (updatedCartItems.length < cartItems.length) {
-        cartItems.length = 0;
-        cartItems.push(...updatedCartItems);
-        renderOrder();
-      }
+    if (e.target.classList.contains('btn-remove') && e.target.id) {
+      removeFromCart(e.target.id);
     }
   });
 };
@@ -128,15 +149,20 @@ const renderTotal = (total) => {
     `;
 };
 
-const renderPriceSummary = () => {
-  const totalSection = document.createElement('section');
-  totalSection.classList.add('total-container');
-  mainContainer.appendChild(totalSection);
-  //TODO: do not render when rerendering after item removal
-  totalSection.innerHTML = `
+const renderPriceSummaryTitle = () => {
+  console.log('renderPriceSummaryTitle CALLED');
+  const totalContainer = document.createElement('section');
+  totalContainer.classList.add('total-container');
+  totalContainer.setAttribute('id', 'total-container');
+  mainContainer.appendChild(totalContainer);
+  totalContainer.innerHTML = `
           <h2 class="section-title border-top-grey padding-top-24">Your order</h2>
-          <div id="total-items"><div>
-      `;
+    `;
+};
+
+const renderPriceSummary = () => {
+  const totalContainer = document.getElementById('total-container');
+  totalContainer.innerHTML += `<div id="total-items"><div>`;
 
   const totalItems = document.getElementById('total-items');
 
@@ -204,6 +230,4 @@ const renderOrder = () => {
     .join('');
 
   menuItemsContainer.innerHTML += orderHtml;
-
-  renderPriceSummary();
 };
