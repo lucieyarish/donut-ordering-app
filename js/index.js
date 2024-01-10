@@ -9,7 +9,13 @@ const veganBadge = `<img src="${badgePath}" class="badge-img">`;
 
 const cartItems = [];
 
-let isOrderRendered;
+const handleCartButtonClick = (e) => {
+  if (e.target.classList.contains('btn-remove') && e.target.dataset.index) {
+    removeFromCart(e.target.dataset.index);
+  } else if (e.target.classList.contains('btn-cart') && e.target.id) {
+    addToCart(e.target.id);
+  }
+};
 
 const renderHeader = () => {
   const headerHtml = `
@@ -55,27 +61,25 @@ const addToCart = (id) => {
   }
 };
 
-const removeFromCart = (id) => {
-  const itemIdToRemove = id;
+const removeFromCart = (index) => {
+  cartItems.splice(index, 1);
 
-  const updatedCartItems = cartItems.filter(
-    (item) => item.uuid !== itemIdToRemove
-  );
-
-  if (updatedCartItems.length < cartItems.length) {
-    cartItems.length = 0;
-    cartItems.push(...updatedCartItems);
-    document.getElementById('total-container').innerHTML = '';
-
-    if (!isOrderRendered) {
-      renderOrder();
-      renderPriceSummaryTitle();
-      renderPriceSummary();
-      isOrderRendered = true;
-    } else {
-      renderOrder();
-    }
+  if (!cartItems.length) {
+    clearCart();
+  } else {
+    renderOrder(cartItems);
+    renderPriceSummary();
   }
+};
+
+const clearCart = () => {
+  menuItemsContainer.removeEventListener('click', handleCartButtonClick);
+
+  if (document.getElementById('total-container')) {
+    document.getElementById('total-container').remove();
+  }
+
+  renderMenu();
 };
 
 const renderMenu = () => {
@@ -108,14 +112,7 @@ const renderMenu = () => {
   const checkoutBtn = createCheckoutBtn();
   menuItemsContainer.appendChild(checkoutBtn);
 
-  menuItemsContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('btn-cart') && e.target.id) {
-      addToCart(e.target.id);
-    }
-    if (e.target.classList.contains('btn-remove') && e.target.id) {
-      removeFromCart(e.target.id);
-    }
-  });
+  menuItemsContainer.addEventListener('click', handleCartButtonClick);
 };
 
 renderMenu();
@@ -203,10 +200,10 @@ const renderPriceSummary = () => {
   }
 };
 
-const renderOrder = () => {
+const renderOrder = (items) => {
   menuItemsContainer.innerHTML = '';
-  const orderHtml = cartItems
-    .map((item) => {
+  const orderHtml = items
+    .map((item, index) => {
       const ingredients = item.ingredients.join(', ');
       return `
         <li >
@@ -222,7 +219,9 @@ const renderOrder = () => {
                     <p class="item-ingredients">${ingredients}</p>
                     <h4 class="item-price">$${item.price}</h4>
                 </div>
-                <button id="${item.uuid}" class="btn-cart btn-remove">-</button>
+                <button data-index="${index}" id="${
+        item.uuid
+      }" class="btn-cart btn-remove">-</button>
             </div>
         </li>
     `;
