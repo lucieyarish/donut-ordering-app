@@ -4,11 +4,13 @@ import { calculateTotal, calculateComboDiscount } from './util-functions.js';
 const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
 const menuItemsContainer = document.getElementById('menu-items-container');
+const cartAmountBadge = document.getElementById('cart-amount-badge');
 
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
 
 const cartItems = [];
+let cartItemsAmount = 0;
 
 // EVENT LISTENERS
 const handleCartButtonClick = (e) => {
@@ -24,18 +26,24 @@ const addToCart = (id) => {
   const itemToAdd = menu.find((item) => item.uuid === id);
   const checkoutBtn = document.getElementById('checkout-btn');
   cartItems.push(itemToAdd);
+  cartItemsAmount += 1;
+  cartAmountBadge.setAttribute('value', cartItemsAmount);
   if (cartItems.length === 1) {
     checkoutBtn.disabled = false;
     checkoutBtn.classList.remove('btn-disabled');
     checkoutBtn.classList.add('btn-active');
+    cartAmountBadge.classList.add('cart-badge');
   }
 };
 
 const removeFromCart = (index) => {
   cartItems.splice(index, 1);
+  cartItemsAmount -= 1;
+  cartAmountBadge.setAttribute('value', cartItemsAmount);
 
   if (!cartItems.length) {
     clearCart();
+    cartAmountBadge.classList.remove('cart-badge');
   } else {
     renderOrder(cartItems);
     renderPriceSummary();
