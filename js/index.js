@@ -1,4 +1,5 @@
 import { menu } from './data.js';
+import { calculateTotal, calculateComboDiscount } from './util-functions.js';
 
 const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
@@ -9,6 +10,7 @@ const veganBadge = `<img src="${badgePath}" class="badge-img">`;
 
 const cartItems = [];
 
+// EVENT LISTENERS
 const handleCartButtonClick = (e) => {
   if (e.target.classList.contains('btn-remove') && e.target.dataset.index) {
     removeFromCart(e.target.dataset.index);
@@ -17,6 +19,40 @@ const handleCartButtonClick = (e) => {
   }
 };
 
+//CART ACTIONS
+const addToCart = (id) => {
+  const itemToAdd = menu.find((item) => item.uuid === id);
+  const checkoutBtn = document.getElementById('checkout-btn');
+  cartItems.push(itemToAdd);
+  if (cartItems.length === 1) {
+    checkoutBtn.disabled = false;
+    checkoutBtn.classList.remove('btn-disabled');
+    checkoutBtn.classList.add('btn-active');
+  }
+};
+
+const removeFromCart = (index) => {
+  cartItems.splice(index, 1);
+
+  if (!cartItems.length) {
+    clearCart();
+  } else {
+    renderOrder(cartItems);
+    renderPriceSummary();
+  }
+};
+
+const clearCart = () => {
+  menuItemsContainer.removeEventListener('click', handleCartButtonClick);
+
+  if (document.getElementById('total-container')) {
+    document.getElementById('total-container').remove();
+  }
+
+  renderMenu();
+};
+
+// RENDERING FUNCTIONS
 const renderHeader = () => {
   const headerHtml = `
         <div class="header-background">
@@ -48,38 +84,6 @@ const createCheckoutBtn = () => {
   });
 
   return checkoutBtn;
-};
-
-const addToCart = (id) => {
-  const itemToAdd = menu.find((item) => item.uuid === id);
-  const checkoutBtn = document.getElementById('checkout-btn');
-  cartItems.push(itemToAdd);
-  if (cartItems.length === 1) {
-    checkoutBtn.disabled = false;
-    checkoutBtn.classList.remove('btn-disabled');
-    checkoutBtn.classList.add('btn-active');
-  }
-};
-
-const removeFromCart = (index) => {
-  cartItems.splice(index, 1);
-
-  if (!cartItems.length) {
-    clearCart();
-  } else {
-    renderOrder(cartItems);
-    renderPriceSummary();
-  }
-};
-
-const clearCart = () => {
-  menuItemsContainer.removeEventListener('click', handleCartButtonClick);
-
-  if (document.getElementById('total-container')) {
-    document.getElementById('total-container').remove();
-  }
-
-  renderMenu();
 };
 
 const renderMenu = () => {
@@ -117,16 +121,6 @@ const renderMenu = () => {
 
 renderMenu();
 
-const calculateTotal = () => {
-  return cartItems.reduce((total, currentItem) => total + currentItem.price, 0);
-};
-
-const calculateComboDiscount = (total) => {
-  const discountedTotal = total - (total / 100) * 15;
-
-  return discountedTotal;
-};
-
 const renderComboDiscountInfo = () => {
   return `
         <div class="combo-discount-container border-top-grey">
@@ -136,7 +130,6 @@ const renderComboDiscountInfo = () => {
     `;
 };
 
-//TODO: do not render when rerendering after item removal and when current cart items length is 0
 const renderTotal = (total) => {
   return `
         <div class="total-price-container border-top-black">
@@ -147,7 +140,6 @@ const renderTotal = (total) => {
 };
 
 const renderPriceSummaryTitle = () => {
-  console.log('renderPriceSummaryTitle CALLED');
   const totalContainer = document.createElement('section');
   totalContainer.classList.add('total-container');
   totalContainer.setAttribute('id', 'total-container');
@@ -180,7 +172,7 @@ const renderPriceSummary = () => {
     cartItems.some((i) => i.isFood) &&
     cartItems.some((i) => !i.isFood && i.price !== 0);
 
-  const total = calculateTotal();
+  const total = calculateTotal(cartItems);
   let discountedTotal = 0;
 
   if (isCombo) {
