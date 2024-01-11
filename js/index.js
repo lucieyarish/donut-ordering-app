@@ -5,6 +5,8 @@ const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
 const menuItemsContainer = document.getElementById('menu-items-container');
 const cartAmountBadge = document.getElementById('cart-amount-badge');
+const modal = document.getElementById('modal');
+const modalCloseBtn = document.getElementById('modal-close-btn');
 
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
@@ -20,6 +22,10 @@ const handleCartButtonClick = (e) => {
     addToCart(e.target.id);
   }
 };
+
+modalCloseBtn.addEventListener('click', function () {
+  modal.style.display = 'none';
+});
 
 //CART ACTIONS
 const addToCart = (id) => {
@@ -47,7 +53,11 @@ const removeFromCart = (index) => {
   } else {
     renderOrder(cartItems);
     renderPriceSummary();
-    setUpCompleteOrderBtn();
+    document
+      .getElementById('complete-order-btn')
+      .addEventListener('click', function () {
+        modal.style.display = 'block';
+      });
   }
 };
 
@@ -91,8 +101,17 @@ const setUpCheckoutBtn = () => {
       renderPriceSummaryTitle();
       renderPriceSummary();
       setUpCompleteOrderBtn();
+      setUpPayBtn();
     }
   });
+};
+
+const setUpPayBtn = () => {
+  const payBtn = createBtn();
+  payBtn.setAttribute('id', 'pay-btn');
+  payBtn.classList.add('btn-active');
+  payBtn.innerText = 'Pay';
+  document.getElementById('modal-inner').appendChild(payBtn);
 };
 
 const setUpCompleteOrderBtn = () => {
@@ -101,6 +120,10 @@ const setUpCompleteOrderBtn = () => {
   completeOrderBtn.classList.add('btn-active');
   completeOrderBtn.innerText = 'Complete order';
   document.getElementById('total-container').appendChild(completeOrderBtn);
+
+  completeOrderBtn.addEventListener('click', function () {
+    modal.style.display = 'block';
+  });
 };
 
 const createBtn = () => {

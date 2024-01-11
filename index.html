@@ -30,5 +30,42 @@
             </ul>
         </section>
     </main>
+    <div id="modal" class="modal">
+        <div class="close-modal-btn-container">
+            <button class="modal-close-btn" id="modal-close-btn">X</button>
+        </div>
+        <div class="modal-inner" id="modal-inner">
+            <h2 class="card-details-title">Enter card details</h2>
+            <form id="card-details-form">
+                <input 
+                    id="fullName" 
+                    type="text" 
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    aria-label="Full name"
+                    required />
+                <input 
+                    id="cardNumber" 
+                    type="tel" 
+                    inputmode="numeric"
+                    pattern="[0-9\s]{13,19}"
+                    name="cardNumber"
+                    maxlength="19"
+                    placeholder="Enter card number"
+                    aria-label="Card number"
+                    required />
+                <input 
+                    id="cardCvv" 
+                    type="tel" 
+                    inputmode="numeric"
+                    pattern="[0-9\s]{3}"
+                    name="cardCvv"
+                    maxlength="3"
+                    placeholder="Enter CVV"
+                    aria-label="CVV"
+                    required />
+            </form>
+        </div>
+    </div>
 </body>
 </html>
