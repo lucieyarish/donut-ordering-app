@@ -103,6 +103,9 @@ body {
     justify-content: space-between;
     margin: 0.8em 0;
 }
+.total-price-container {
+    margin-bottom: 2em;
+}
 
 .text-bold {
     font-weight: var(--font-weight-bold);
@@ -235,7 +238,7 @@ body {
 
 .btn-primary.btn-active:hover,
 .btn-primary.btn-active:focus    {
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 
 .btn-remove {

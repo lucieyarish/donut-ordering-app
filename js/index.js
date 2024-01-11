@@ -47,6 +47,7 @@ const removeFromCart = (index) => {
   } else {
     renderOrder(cartItems);
     renderPriceSummary();
+    setUpCompleteOrderBtn();
   }
 };
 
@@ -74,13 +75,14 @@ const renderHeader = () => {
 
 renderHeader();
 
-const createCheckoutBtn = () => {
-  const checkoutBtn = document.createElement('btn');
+const setUpCheckoutBtn = () => {
+  const checkoutBtn = createBtn();
   checkoutBtn.setAttribute('id', 'checkout-btn');
-  checkoutBtn.classList.add('btn-primary');
   checkoutBtn.classList.add('btn-disabled');
   checkoutBtn.disabled = true;
   checkoutBtn.innerText = 'Checkout';
+
+  menuItemsContainer.appendChild(checkoutBtn);
 
   checkoutBtn.addEventListener('click', function () {
     if (!checkoutBtn.disabled) {
@@ -88,10 +90,24 @@ const createCheckoutBtn = () => {
       renderOrder(cartItems);
       renderPriceSummaryTitle();
       renderPriceSummary();
+      setUpCompleteOrderBtn();
     }
   });
+};
 
-  return checkoutBtn;
+const setUpCompleteOrderBtn = () => {
+  const completeOrderBtn = createBtn();
+  completeOrderBtn.setAttribute('id', 'complete-order-btn');
+  completeOrderBtn.classList.add('btn-active');
+  completeOrderBtn.innerText = 'Complete order';
+  document.getElementById('total-container').appendChild(completeOrderBtn);
+};
+
+const createBtn = () => {
+  const btn = document.createElement('btn');
+  btn.classList.add('btn-primary');
+
+  return btn;
 };
 
 const renderMenu = () => {
@@ -121,8 +137,7 @@ const renderMenu = () => {
 
   menuItemsContainer.innerHTML += menuHtml;
 
-  const checkoutBtn = createCheckoutBtn();
-  menuItemsContainer.appendChild(checkoutBtn);
+  setUpCheckoutBtn();
 
   menuItemsContainer.addEventListener('click', handleCartButtonClick);
 };
