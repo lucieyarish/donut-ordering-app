@@ -1,5 +1,6 @@
 import { menu } from './data.js';
-import { calculateTotal, calculateComboDiscount } from './util-functions.js';
+import { calculateTotal, calculateComboDiscount } from './utils.js';
+import { validateInputs } from './validations.js';
 
 const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
@@ -7,6 +8,7 @@ const menuItemsContainer = document.getElementById('menu-items-container');
 const cartAmountBadge = document.getElementById('cart-amount-badge');
 const modal = document.getElementById('modal');
 const modalCloseBtn = document.getElementById('modal-close-btn');
+const form = document.getElementById('card-details-form');
 
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
@@ -85,6 +87,11 @@ const renderHeader = () => {
 
 renderHeader();
 
+//TODO: call after payment details are submitted
+const displayMessage = () => {
+  //Display order on its way msg
+};
+
 const setUpCheckoutBtn = () => {
   const checkoutBtn = createBtn();
   checkoutBtn.setAttribute('id', 'checkout-btn');
@@ -109,9 +116,16 @@ const setUpCheckoutBtn = () => {
 const setUpPayBtn = () => {
   const payBtn = createBtn();
   payBtn.setAttribute('id', 'pay-btn');
+  payBtn.setAttribute('type', 'submit');
   payBtn.classList.add('btn-active');
+  payBtn.classList.add('margin-top-35');
   payBtn.innerText = 'Pay';
-  document.getElementById('modal-inner').appendChild(payBtn);
+  form.appendChild(payBtn);
+
+  payBtn.addEventListener('click', function () {
+    validateInputs();
+    displayMessage();
+  });
 };
 
 const setUpCompleteOrderBtn = () => {

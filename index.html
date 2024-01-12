@@ -37,33 +37,37 @@
         <div class="modal-inner" id="modal-inner">
             <h2 class="card-details-title">Enter card details</h2>
             <form id="card-details-form">
-                <input 
-                    id="fullName" 
-                    type="text" 
-                    name="fullName"
-                    placeholder="Enter your full name"
-                    aria-label="Full name"
-                    required />
-                <input 
-                    id="cardNumber" 
-                    type="tel" 
-                    inputmode="numeric"
-                    pattern="[0-9\s]{13,19}"
-                    name="cardNumber"
-                    maxlength="19"
-                    placeholder="Enter card number"
-                    aria-label="Card number"
-                    required />
-                <input 
-                    id="cardCvv" 
-                    type="tel" 
-                    inputmode="numeric"
-                    pattern="[0-9\s]{3}"
-                    name="cardCvv"
-                    maxlength="3"
-                    placeholder="Enter CVV"
-                    aria-label="CVV"
-                    required />
+                <div id="full-name-container" class="input-container">
+                    <input 
+                        id="fullName" 
+                        type="text" 
+                        name="fullName"
+                        minlength="2"
+                        placeholder="Enter your full name"
+                        aria-label="Full name"
+                        required />
+                </div>
+                <div id="card-number-container" class="input-container">
+                    <input 
+                        id="cardNumber" 
+                        type="number" 
+                        name="cardNumber"
+                        minlength="19"
+                        maxlength="19"
+                        placeholder="Enter card number"
+                        aria-label="Card number"
+                        required />
+                </div>
+                <div id="card-cvv-container" class="input-container">
+                    <input 
+                        id="cardCvv" 
+                        name="cardCvv"
+                        minlength="3"
+                        maxlength="3"
+                        placeholder="Enter CVV"
+                        aria-label="CVV"
+                        required />
+                </div>
             </form>
         </div>
     </div>
