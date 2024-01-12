@@ -193,8 +193,8 @@ const renderComboDiscountInfo = () => {
 const renderTotal = (total) => {
   return `
         <div class="total-price-container border-top-black">
-            <p class="text-bold text-size-20">Total price:</p>
-            <p class="text-bold text-size-20">$${total}</p>
+            <p class="text-bold text-size-20 total-items-text">Total price:</p>
+            <p class="text-bold text-size-20 total-items-text">$${total}</p>
         </div>
     `;
 };
@@ -219,8 +219,8 @@ const renderPriceSummary = () => {
     .map((item) => {
       return `
         <div class="total-items">
-            <p>${item.name}</p>
-            <p>$${item.price}</p>
+            <p class="total-items-text">${item.name}</p>
+            <p class="total-items-text">$${item.price}</p>
         </div>
       `;
     })
