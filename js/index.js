@@ -88,8 +88,16 @@ const renderHeader = () => {
 renderHeader();
 
 //TODO: call after payment details are submitted
-const displayMessage = () => {
-  //Display order on its way msg
+const renderOrderStatusMsg = () => {
+  const totalContainer = document.getElementById('total-container');
+
+  const html = `
+    <div class="order-status-container">
+        <p class="order-status-msg">Thanks, your order is on its way!<p>
+    </div>
+  `;
+
+  totalContainer.innerHTML = html;
 };
 
 const setUpCheckoutBtn = () => {
@@ -123,8 +131,10 @@ const setUpPayBtn = () => {
   form.appendChild(payBtn);
 
   payBtn.addEventListener('click', function () {
-    validateInputs();
-    displayMessage();
+    const isInputsValid = validateInputs();
+    if (isInputsValid) {
+      renderOrderStatusMsg();
+    }
   });
 };
 

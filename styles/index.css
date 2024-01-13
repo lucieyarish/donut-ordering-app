@@ -41,6 +41,7 @@ p {
     --white-semi-transparent: #ffffffd0;
     --donut-pink: #FC546D;
     --donut-pink-light: #F28C9B;
+    --pink-light: #FDF4F5;
     --grey-dark: #514E4E;
     --grey-light: #8B8B9B;
     --grey-light-2: #DEDEDE;
@@ -133,7 +134,7 @@ body {
 
 /* --- LAYOUT --- */
 .menu-items-container {
-    padding: 1.5em;
+    padding: 0 1.5em 1.5em 1.5em;
 }
 
 .menu-item-container {
@@ -359,6 +360,19 @@ input[type=number] {
     border-color: var(--donut-pink);
 }
 
+/* --- STATUS MESSAGE --- */
+.order-status-container {
+    background-color: var(--pink-light);
+    margin: 0 auto 1em auto;
+    text-align: center;
+}
+
+.order-status-msg {
+    color: var(--donut-pink);
+    padding: 2.5em 2em;
+    font-weight: var(--font-weight-bold);
+}
+
 /* --- MEDIA QUERIES --- */
 @media (min-width: 768px) {
     .logo-title {
@@ -413,7 +427,10 @@ input[type=number] {
     .total-items-text {
         font-size: 1.2rem;
     }
-    
+
+    .order-status-msg {
+        font-size: 1.2rem;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -427,6 +444,10 @@ input[type=number] {
 
     .header-container {
         padding: 2.5em;
+    }
+
+    .menu-items-container {
+        padding-top: 1em;
     }
 
     .menu-item-description {
@@ -463,6 +484,10 @@ input[type=number] {
     }
 
     .total-items-text {
+        font-size: 1.4rem;
+    }
+
+    .order-status-msg {
         font-size: 1.4rem;
     }
 }

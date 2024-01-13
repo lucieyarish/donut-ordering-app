@@ -109,5 +109,6 @@ export const validateInputs = () => {
   if (isNameValid && isCardNumValid && isCardCvvValid) {
     form.reset();
     document.getElementById('modal').style.display = 'none';
+    return true;
   }
 };
