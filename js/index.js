@@ -87,7 +87,6 @@ const renderHeader = () => {
 
 renderHeader();
 
-//TODO: call after payment details are submitted
 const renderOrderStatusMsg = () => {
   const totalContainer = document.getElementById('total-container');
 
@@ -134,6 +133,9 @@ const setUpPayBtn = () => {
     const isInputsValid = validateInputs();
     if (isInputsValid) {
       renderOrderStatusMsg();
+      cartAmountBadge.removeAttribute('value');
+      const removeBtns = document.getElementsByClassName('btn-remove');
+      Array.from(removeBtns).forEach((btn) => btn.remove());
     }
   });
 };
