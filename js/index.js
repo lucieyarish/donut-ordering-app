@@ -2,6 +2,9 @@ import { menu } from './data.js';
 import { calculateTotal, calculateComboDiscount } from './utils.js';
 import { validateInputs } from './validations.js';
 
+const OAT_MILK_UUID = '4fb25831-6d9e-4aa0-9f29-56da3d14be63';
+const CAPPUCCINO_UUID = '516ba349-3ec0-463d-b831-c2e3425d10ab';
+
 const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
 const menuItemsContainer = document.getElementById('menu-items-container');
@@ -9,6 +12,8 @@ const cartAmountBadge = document.getElementById('cart-amount-badge');
 const modal = document.getElementById('modal');
 const modalCloseBtn = document.getElementById('modal-close-btn');
 const form = document.getElementById('card-details-form');
+const infoModal = document.getElementById('info-modal');
+const infoModalCloseBtn = document.getElementById('info-modal-close-btn');
 
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
@@ -29,18 +34,40 @@ modalCloseBtn.addEventListener('click', function () {
   modal.style.display = 'none';
 });
 
+infoModalCloseBtn.addEventListener('click', function () {
+  infoModal.style.display = 'none';
+});
+
 //CART ACTIONS
 const addToCart = (id) => {
   const itemToAdd = menu.find((item) => item.uuid === id);
   const checkoutBtn = document.getElementById('checkout-btn');
-  cartItems.push(itemToAdd);
-  cartItemsAmount += 1;
-  cartAmountBadge.setAttribute('value', cartItemsAmount);
-  if (cartItems.length === 1) {
-    checkoutBtn.disabled = false;
-    checkoutBtn.classList.remove('btn-disabled');
-    checkoutBtn.classList.add('btn-active');
-    cartAmountBadge.classList.add('cart-badge');
+
+  const numCappuccinos = cartItems.filter(
+    (item) => item.uuid === CAPPUCCINO_UUID
+  ).length;
+
+  const currentOatMilks = cartItems.filter(
+    (item) => item.uuid === OAT_MILK_UUID
+  ).length;
+
+  if (itemToAdd.uuid === OAT_MILK_UUID && numCappuccinos === 0) {
+    infoModal.style.display = 'block';
+  } else if (
+    itemToAdd.uuid === OAT_MILK_UUID &&
+    currentOatMilks + 1 > numCappuccinos
+  ) {
+    infoModal.style.display = 'block';
+  } else {
+    cartItems.push(itemToAdd);
+    cartItemsAmount += 1;
+    cartAmountBadge.setAttribute('value', cartItemsAmount);
+    if (cartItems.length === 1) {
+      checkoutBtn.disabled = false;
+      checkoutBtn.classList.remove('btn-disabled');
+      checkoutBtn.classList.add('btn-active');
+      cartAmountBadge.classList.add('cart-badge');
+    }
   }
 };
 
@@ -91,8 +118,8 @@ const renderOrderStatusMsg = () => {
   const totalContainer = document.getElementById('total-container');
 
   const html = `
-    <div class="order-status-container">
-        <p class="order-status-msg">Thanks, your order is on its way!<p>
+    <div class="info-status-container">
+        <p class="info-status-msg">Thanks, your order is on its way!<p>
     </div>
   `;
 
