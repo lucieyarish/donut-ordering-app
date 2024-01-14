@@ -248,18 +248,36 @@ const renderPriceSummaryTitle = () => {
     `;
 };
 
+const getItemStats = () => {
+  const itemStats = cartItems.reduce((accumulator, item) => {
+    accumulator[item.name] = accumulator[item.name] || {
+      count: 0,
+      totalPrice: 0,
+    };
+    accumulator[item.name].count += 1;
+    accumulator[item.name].totalPrice += item.price;
+    return accumulator;
+  }, {});
+
+  return itemStats;
+};
+
 const renderPriceSummary = () => {
   const totalContainer = document.getElementById('total-container');
   totalContainer.innerHTML += `<div id="total-items"><div>`;
 
   const totalItems = document.getElementById('total-items');
 
-  const totalHtml = cartItems
-    .map((item) => {
+  const itemStats = getItemStats();
+
+  const totalHtml = Object.keys(itemStats)
+    .map((itemName) => {
+      const { count, totalPrice } = itemStats[itemName];
       return `
         <div class="total-items">
-            <p class="total-items-text">${item.name}</p>
-            <p class="total-items-text">$${item.price}</p>
+            <p class="total-items-text">${itemName}</p>
+            <p class="total-items-text">x${count}</p>
+            <p>$${totalPrice}</p>
         </div>
       `;
     })
