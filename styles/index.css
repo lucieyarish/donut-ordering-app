@@ -447,7 +447,11 @@ input[type=number] {
     }
 
     .menu-items-container {
-        padding-top: 1em;
+        padding: 0 1.5em 1.5em 1.5em;
+    }
+
+    .menu-items-container {
+        padding: 1em 2.5em 1.5em 2.5em;
     }
 
     .menu-item-description {
