@@ -166,8 +166,12 @@ body {
 
 .total-items {
     display: grid;
-    grid-template-columns: 9fr 2fr 1fr;
+    grid-template-columns: 84% 8% 8%;
     margin-top: 0.7em;
+}
+
+.total-items-price {
+    justify-self: end;
 }
 
 /* --- IMAGES --- */
@@ -435,6 +439,10 @@ input[type=number] {
         margin-bottom: 1.3em;
     }
 
+    .total-items {
+        grid-template-columns: 86% 7% 7%;
+    }
+
     .total-items-text {
         font-size: 1.2rem;
     }
@@ -496,6 +504,10 @@ input[type=number] {
     .section-title {
         font-size: 1.8rem;
         margin-bottom: 1.4em;
+    }
+
+    .total-items {
+        grid-template-columns: 90% 5% 5%;
     }
 
     .total-items-text {

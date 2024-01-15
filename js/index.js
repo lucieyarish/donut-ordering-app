@@ -277,7 +277,7 @@ const renderPriceSummary = () => {
         <div class="total-items">
             <p class="total-items-text">${itemName}</p>
             <p class="total-items-text">x${count}</p>
-            <p>$${totalPrice}</p>
+            <p class="total-items-text total-items-price">$${totalPrice}</p>
         </div>
       `;
     })
@@ -293,10 +293,6 @@ const renderPriceSummary = () => {
   let discountedTotal = 0;
 
   if (isCombo) {
-    //TODO: Only apply -15% per drink-donut pair
-    //Find all drink-donut pairs in cartItems
-    //Get total of all pairs & apply -15%
-    //Add total price of remaining items
     discountedTotal = calculateComboDiscount(total);
 
     totalItems.innerHTML += renderComboDiscountInfo();
