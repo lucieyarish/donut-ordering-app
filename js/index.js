@@ -163,6 +163,10 @@ const setUpPayBtn = () => {
       cartAmountBadge.removeAttribute('value');
       const removeBtns = document.getElementsByClassName('btn-remove');
       Array.from(removeBtns).forEach((btn) => btn.remove());
+      setTimeout(() => {
+        document.getElementById('total-container').remove();
+        renderMenu();
+      }, 3000);
     }
   });
 };
