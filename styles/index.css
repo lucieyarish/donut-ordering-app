@@ -446,10 +446,6 @@ input[type=number] {
     .total-items-text {
         font-size: 1.2rem;
     }
-
-    .info-status-msg {
-        font-size: 1.2rem;
-    }
 }
 
 @media (min-width: 1024px) {
@@ -511,10 +507,6 @@ input[type=number] {
     }
 
     .total-items-text {
-        font-size: 1.4rem;
-    }
-
-    .info-status-msg {
         font-size: 1.4rem;
     }
 }

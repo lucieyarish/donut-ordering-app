@@ -18,7 +18,7 @@ const infoModalCloseBtn = document.getElementById('info-modal-close-btn');
 const badgePath = '../assets/images/vegan-badge.png';
 const veganBadge = `<img src="${badgePath}" class="badge-img">`;
 
-const cartItems = [];
+let cartItems = [];
 let cartItemsAmount = 0;
 
 // EVENT LISTENERS
@@ -78,7 +78,6 @@ const removeFromCart = (index) => {
 
   if (!cartItems.length) {
     clearCart();
-    cartAmountBadge.classList.remove('cart-badge');
   } else {
     renderOrder(cartItems);
     renderPriceSummary();
@@ -92,6 +91,10 @@ const removeFromCart = (index) => {
 
 const clearCart = () => {
   menuItemsContainer.removeEventListener('click', handleCartButtonClick);
+  cartAmountBadge.classList.remove('cart-badge');
+
+  cartItems = [];
+  cartItemsAmount = 0;
 
   if (document.getElementById('total-container')) {
     document.getElementById('total-container').remove();
@@ -142,7 +145,9 @@ const setUpCheckoutBtn = () => {
       renderPriceSummaryTitle();
       renderPriceSummary();
       setUpCompleteOrderBtn();
-      setUpPayBtn();
+      if (!document.getElementById('pay-btn')) {
+        setUpPayBtn();
+      }
     }
   });
 };
@@ -164,8 +169,7 @@ const setUpPayBtn = () => {
       const removeBtns = document.getElementsByClassName('btn-remove');
       Array.from(removeBtns).forEach((btn) => btn.remove());
       setTimeout(() => {
-        document.getElementById('total-container').remove();
-        renderMenu();
+        clearCart();
       }, 3000);
     }
   });
@@ -184,7 +188,7 @@ const setUpCompleteOrderBtn = () => {
 };
 
 const createBtn = () => {
-  const btn = document.createElement('btn');
+  const btn = document.createElement('button');
   btn.classList.add('btn-primary');
 
   return btn;
