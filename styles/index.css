@@ -204,10 +204,11 @@ body {
     border: 0.5px solid var(--grey-light-2);
     font-size: 1.3rem;
     justify-self: end;
+    outline: var(--donut-pink);
 }
 
 .btn-cart:hover,
-.btn-cart:focus {
+.btn-cart:focus {   
     background: var(--donut-pink);
     color: var(--white);
     border: none;
@@ -229,6 +230,7 @@ body {
     font-weight: 800;
     transition: all .25s;
     border: none;
+    outline: var(--donut-pink);
 }
 
 .btn-active {
@@ -326,7 +328,7 @@ body {
 }
 
 .modal-close-btn:hover,
-.modal-close-btn:active {
+.modal-close-btn:focus {
     color: var(--donut-pink);
     cursor: pointer;
 }

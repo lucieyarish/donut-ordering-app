@@ -5,7 +5,6 @@ import { validateInputs } from './validations.js';
 const OAT_MILK_UUID = '4fb25831-6d9e-4aa0-9f29-56da3d14be63';
 const CAPPUCCINO_UUID = '516ba349-3ec0-463d-b831-c2e3425d10ab';
 
-const header = document.getElementById('header');
 const mainContainer = document.getElementById('main-container');
 const menuItemsContainer = document.getElementById('menu-items-container');
 const cartAmountBadge = document.getElementById('cart-amount-badge');
@@ -103,19 +102,6 @@ const clearCart = () => {
 };
 
 // RENDERING FUNCTIONS
-const renderHeader = () => {
-  const headerHtml = `
-        <div class="header-background">
-            <h1 class="logo-title">Delish donuts</h1>
-            <h3 class="logo-subtitle">The best donuts in town.</h3>
-        </div>
-    `;
-
-  header.innerHTML = headerHtml;
-};
-
-renderHeader();
-
 const renderOrderStatusMsg = () => {
   const totalContainer = document.getElementById('total-container');
 
