@@ -30,11 +30,11 @@ const handleCartButtonClick = (e) => {
 };
 
 modalCloseBtn.addEventListener('click', function () {
-  modal.style.display = 'none';
+  modal.close();
 });
 
 infoModalCloseBtn.addEventListener('click', function () {
-  infoModal.style.display = 'none';
+  infoModal.close();
 });
 
 //CART ACTIONS
@@ -51,12 +51,12 @@ const addToCart = (id) => {
   ).length;
 
   if (itemToAdd.uuid === OAT_MILK_UUID && numCappuccinos === 0) {
-    infoModal.style.display = 'block';
+    infoModal.showModal();
   } else if (
     itemToAdd.uuid === OAT_MILK_UUID &&
     currentOatMilks + 1 > numCappuccinos
   ) {
-    infoModal.style.display = 'block';
+    infoModal.showModal();
   } else {
     cartItems.push(itemToAdd);
     cartItemsAmount += 1;
@@ -83,7 +83,7 @@ const removeFromCart = (index) => {
     document
       .getElementById('complete-order-btn')
       .addEventListener('click', function () {
-        modal.style.display = 'block';
+        modal.showModal();
       });
   }
 };
@@ -182,7 +182,7 @@ const setUpCompleteOrderBtn = () => {
   document.getElementById('total-container').appendChild(completeOrderBtn);
 
   completeOrderBtn.addEventListener('click', function () {
-    modal.style.display = 'block';
+    modal.showModal();
   });
 };
 
