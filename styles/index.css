@@ -228,6 +228,7 @@ body {
     border-radius: 3px;
     font-weight: 800;
     transition: all .25s;
+    border: none;
 }
 
 .btn-active {
@@ -480,6 +481,10 @@ input[type=number] {
 
     .badge-img {
         width: 26px;
+    }
+
+    .btn-primary {
+        font-size: 1.1rem;
     }
 
     .btn-cart {

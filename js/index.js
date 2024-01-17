@@ -15,8 +15,7 @@ const form = document.getElementById('card-details-form');
 const infoModal = document.getElementById('info-modal');
 const infoModalCloseBtn = document.getElementById('info-modal-close-btn');
 
-const badgePath = '../assets/images/vegan-badge.png';
-const veganBadge = `<img src="${badgePath}" class="badge-img">`;
+const veganBadge = `<img src="../assets/images/vegan-badge.png" class="badge-img">`;
 
 let cartItems = [];
 let cartItemsAmount = 0;
