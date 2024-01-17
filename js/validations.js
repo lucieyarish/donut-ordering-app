@@ -56,7 +56,6 @@ const validateCardNumber = (cardNumber) => {
       );
       return false;
     case cardNumber.length > 15 || 16:
-      // case cardNumber.length > 16:
       displayErrorMsg(
         cardElementId,
         cardErrorMsgId,
@@ -65,7 +64,6 @@ const validateCardNumber = (cardNumber) => {
       );
       return false;
     case cardNumber.length < 15 || 16:
-      // case cardNumber.length < 16:
       displayErrorMsg(
         cardElementId,
         cardErrorMsgId,

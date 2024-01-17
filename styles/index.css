@@ -30,11 +30,6 @@ p {
     /* Fonts */
     --font-primary: 'Verdana', sans-serif;
     --font-secondary: 'Sniglet', sans-serif;
-    /* Font weight */
-    --font-weight-light: 200;
-    --font-weight-regular: 400;
-    --font-weight-semi-bold: 600;
-    --font-weight-bold: 800;
     /* Font colors */
     --white: #FFF;
     --black: #000;
@@ -44,11 +39,7 @@ p {
     --pink-light: #FDF4F5;
     --grey-dark: #514E4E;
     --grey-light: #8B8B9B;
-    --grey-light-2: #DEDEDE;
-    /* Border radius */
-    --border-radius-3: 3px;
-    --border-radius-5: 5px;
-    --border-radius-50: 50px;
+    --grey-light-2: #DEDEDE;    
 }
 
 body {
@@ -59,7 +50,7 @@ body {
 .logo-title,
 .logo-subtitle {
     font-family: var(--font-secondary);
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
 }
 
 .logo-title {
@@ -73,7 +64,7 @@ body {
 }
 
 .item-name {
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
     font-size: 1rem;
     margin-bottom: 0.2em;
 }
@@ -82,12 +73,12 @@ body {
     color: var(--grey-light);
     font-size: 0.8rem;
     text-transform: lowercase;
-    font-weight: var(--font-weight-light);
+    font-weight: 200;
     margin-bottom: 0.6em;
 }
 
 .item-price {
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
     font-size: 1.2rem;
 }
 
@@ -108,7 +99,7 @@ body {
 }
 
 .text-bold {
-    font-weight: var(--font-weight-bold);
+    font-weight: 800;
 }
 
 .text-size-20 {
@@ -127,7 +118,7 @@ body {
 .header-background {
     display: inline-block;
     background: var(--white-semi-transparent);
-    border-radius: var(--border-radius-5);
+    border-radius: 5px;
     padding: 0.5em 1em;
 }
 
@@ -178,7 +169,7 @@ body {
 .menu-item-img {
     min-width: 80px;
     width: 90%;
-    border-radius: var(--border-radius-3);
+    border-radius: 3px;
 }
 
 .badge-img {
@@ -195,7 +186,7 @@ body {
         font-size: 0.75rem;
         color: var(--white);
         font-family: 'Verdana', sans-serif;
-        font-weight: var(--font-weight-bold);
+        font-weight: 800;
         background: var(--donut-pink);
         border-radius: 50%;
         padding: 0 0.75em;
@@ -206,7 +197,7 @@ body {
 
 /* --- BUTTONS AND LINKS --- */
 .btn-cart {
-    border-radius: var(--border-radius-50);
+    border-radius: 50px;
     height: 35px;
     width: 35px;
     background-color: var(--white);
@@ -234,8 +225,8 @@ body {
     padding: 0.9em;
     margin-top: 1.3em;
     text-align: center;
-    border-radius: var(--border-radius-3);
-    font-weight: var(--font-weight-bold);
+    border-radius: 3px;
+    font-weight: 800;
     transition: all .25s;
 }
 
@@ -339,7 +330,7 @@ body {
 
 input {
     border: 2px solid var(--grey-light);
-    border-radius: var(--border-radius-3);
+    border-radius: 3px;
     padding: 0.75em 1em;
     width: 100%;
     margin-top: 1.5em;
@@ -368,7 +359,7 @@ input[type=number] {
     margin-top: 0.2em;
     margin-left: 0.2em;
     color: var(--donut-pink);
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
 }
 
 .error-outline {
@@ -385,7 +376,7 @@ input[type=number] {
 .info-status-msg {
     color: var(--donut-pink);
     padding: 2.5em 2em;
-    font-weight: var(--font-weight-bold);
+    font-weight: 800;
 }
 
 /* --- MEDIA QUERIES --- */
