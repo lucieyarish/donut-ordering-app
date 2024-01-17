@@ -43,6 +43,7 @@ The app was built entirely from scratch by me.
 ##### Mobile
 <img width="226" alt="Screenshot 2024-01-17 at 17 23 53" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/60dc0a48-e7ff-4ba9-aaec-d0d272bab721">
 <img width="226" alt="Screenshot 2024-01-17 at 17 24 34" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/9f015643-bd76-4012-93ca-67e7378d19f4">
+<br>
 <img width="226" alt="Screenshot 2024-01-17 at 17 24 47" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/5a07c216-1ee0-4d72-bf05-e37222412efe">
 <img width="226" alt="Screenshot 2024-01-17 at 17 24 56" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/4cfdbf4b-af93-472a-82ea-b0b3fd067352">
 <img width="226" alt="Screenshot 2024-01-17 at 17 25 08" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/f21852c4-0c69-475d-902c-3f75e5a4fe8e">
