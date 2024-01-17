@@ -398,6 +398,13 @@ input[type=number] {
         padding: 2em;
     }
 
+    .cart-icon-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 2em;    
+    }
+}
+
     .menu-item-img {
         width: 100%;
     }
