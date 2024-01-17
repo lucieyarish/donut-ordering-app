@@ -196,26 +196,26 @@ const createBtn = () => {
 const renderMenu = () => {
   menuItemsContainer.innerHTML = '';
   const menuHtml = menu
-    .map((item) => {
-      const ingredients = item.ingredients.join(', ');
-      return `
+    .map(
+      ({ image, altText, name, isVegan, ingredients, price, uuid } = item) => {
+        const ingredientsWithSpace = ingredients.join(', ');
+        return `
         <li >
             <div class="menu-item-container border-bottom-grey">
-                <img src="${item.image}" class="menu-item-img"alt="${
-        item.altText
-      }">
+                <img src="${image}" class="menu-item-img"alt="${altText}">
                 <div class="menu-item-description">
-                    <h3 class="item-name">${item.name}
-                    <span>${item.isVegan ? veganBadge : ''}</span>
+                    <h3 class="item-name">${name}
+                    <span>${isVegan ? veganBadge : ''}</span>
                     </h3>
-                    <p class="item-ingredients">${ingredients}</p>
-                    <h4 class="item-price">$${item.price}</h4>
+                    <p class="item-ingredients">${ingredientsWithSpace}</p>
+                    <h4 class="item-price">$${price}</h4>
                 </div>
-                <button id="${item.uuid}" class="btn-cart">+</button>
+                <button id="${uuid}" class="btn-cart">+</button>
             </div>
         </li>
     `;
-    })
+      }
+    )
     .join('');
 
   menuItemsContainer.innerHTML += menuHtml;
