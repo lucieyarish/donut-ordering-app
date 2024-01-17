@@ -10,6 +10,7 @@
   - [Built With](#built-with)
   - [What I Learned](#what-i-learned)
   - [Continued Development](#continued-development)
+  - [Resources & Tools](#resources-and-tools)
   - [Time Commitment](#time-commitment)
 - [Author](#author)
 - [Acknowledgements](#acknowledgements)
@@ -106,7 +107,14 @@ In Delish Donuts 2.0, I am planning to keep the existing features, as well as im
 - Only apply 15% discount per each donut-drink pair
 - Format card numbers on the fly (add spaces between each 4 numbers)
 - Create banner advertising the donut-drink combo discount
-- Make cart icon always visible (in fixed position) & clickable (render order on click) 
+- Make cart icon always visible (in fixed position) & clickable (render order on click)
+
+### Resources & Tools
+My app wouldn't be what it is without these awesome free tools:
+- All images were AI generated with the help of [gencraft](https://gencraft.com/)
+- The vegan badge was AI generated on gencraft as well, and its background removed with the help of [removebg](https://www.remove.bg/)
+- The favicon emoji was created with the help of [favicon.io](https://favicon.io/)
+
 
 ### Time Commitment
 The project took me a little under 17 hours to build. Fixes after code review, testing, deployment and GitHub README update took another 3 hours. TOTAL: 20 hours
