@@ -14,7 +14,6 @@ const infoModalCloseBtn = document.getElementById('info-modal-close-btn');
 const veganBadge = `<img src="../assets/images/vegan-badge.png" class="badge-img">`;
 
 let cartItems = [];
-let cartItemsAmount = 0;
 
 // EVENT LISTENERS
 const handleCartButtonClick = (e) => {
@@ -55,8 +54,7 @@ const addToCart = (id) => {
     infoModal.showModal();
   } else {
     cartItems.push(itemToAdd);
-    cartItemsAmount += 1;
-    cartAmountBadge.setAttribute('value', cartItemsAmount);
+    cartAmountBadge.setAttribute('value', cartItems.length);
     if (cartItems.length === 1) {
       checkoutBtn.disabled = false;
       checkoutBtn.classList.remove('btn-disabled');
@@ -68,8 +66,7 @@ const addToCart = (id) => {
 
 const removeFromCart = (index) => {
   cartItems.splice(index, 1);
-  cartItemsAmount -= 1;
-  cartAmountBadge.setAttribute('value', cartItemsAmount);
+  cartAmountBadge.setAttribute('value', cartItems.length);
 
   if (!cartItems.length) {
     clearCart();
@@ -89,7 +86,6 @@ const clearCart = () => {
   cartAmountBadge.classList.remove('cart-badge');
 
   cartItems = [];
-  cartItemsAmount = 0;
 
   if (document.getElementById('total-container')) {
     document.getElementById('total-container').remove();
@@ -143,7 +139,8 @@ const setUpPayBtn = () => {
   payBtn.innerText = 'Pay';
   form.appendChild(payBtn);
 
-  payBtn.addEventListener('click', function () {
+  payBtn.addEventListener('click', function (e) {
+    e.preventDefault();
     const isInputsValid = validateInputs();
     if (isInputsValid) {
       renderOrderStatusMsg();
