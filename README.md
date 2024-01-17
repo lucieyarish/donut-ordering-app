@@ -41,10 +41,17 @@ The app was built entirely from scratch by me.
 ### Showcase Screenshots
 
 ##### Mobile
+<img width="226" alt="Screenshot 2024-01-17 at 17 23 53" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/60dc0a48-e7ff-4ba9-aaec-d0d272bab721">
+<img width="226" alt="Screenshot 2024-01-17 at 17 24 34" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/9f015643-bd76-4012-93ca-67e7378d19f4">
+<img width="226" alt="Screenshot 2024-01-17 at 17 24 47" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/5a07c216-1ee0-4d72-bf05-e37222412efe">
+<img width="226" alt="Screenshot 2024-01-17 at 17 24 56" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/4cfdbf4b-af93-472a-82ea-b0b3fd067352">
+<img width="226" alt="Screenshot 2024-01-17 at 17 25 08" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/f21852c4-0c69-475d-902c-3f75e5a4fe8e">
 
 ##### Tablet
+<img width="410" alt="Screenshot 2024-01-17 at 17 27 09" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/b09df2b0-db94-446e-a67f-92f606a797da">
 
 ##### Desktop
+<img width="868" alt="Screenshot 2024-01-17 at 17 28 08" src="https://github.com/lucieyarish/donut-ordering-app/assets/79669599/da19248d-8ae0-4faf-b84b-db32ed9ee9df">
 
 ### Links
 - Live URL: https://delish-donuts-lucieyarish.netlify.app/
