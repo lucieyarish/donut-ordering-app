@@ -2,9 +2,6 @@ import { menu } from './data.js';
 import { calculateTotal, calculateComboDiscount } from './utils.js';
 import { validateInputs } from './validations.js';
 
-const OAT_MILK_UUID = '4fb25831-6d9e-4aa0-9f29-56da3d14be63';
-const CAPPUCCINO_UUID = '516ba349-3ec0-463d-b831-c2e3425d10ab';
-
 const mainContainer = document.getElementById('main-container');
 const menuItemsContainer = document.getElementById('menu-items-container');
 const cartAmountBadge = document.getElementById('cart-amount-badge');
@@ -42,17 +39,17 @@ const addToCart = (id) => {
   const checkoutBtn = document.getElementById('checkout-btn');
 
   const numCappuccinos = cartItems.filter(
-    (item) => item.uuid === CAPPUCCINO_UUID
+    (item) => item.slug === 'cappuccino'
   ).length;
 
   const currentOatMilks = cartItems.filter(
-    (item) => item.uuid === OAT_MILK_UUID
+    (item) => item.slug === 'oat-milk'
   ).length;
 
-  if (itemToAdd.uuid === OAT_MILK_UUID && numCappuccinos === 0) {
+  if (itemToAdd.slug === 'oat-milk' && numCappuccinos === 0) {
     infoModal.showModal();
   } else if (
-    itemToAdd.uuid === OAT_MILK_UUID &&
+    itemToAdd.slug === 'at-milk' &&
     currentOatMilks + 1 > numCappuccinos
   ) {
     infoModal.showModal();

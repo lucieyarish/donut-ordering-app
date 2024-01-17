@@ -1,6 +1,6 @@
 export const menu = [
   {
-    uuid: 'f71b2cc0-e12f-4ad2-83f4-46eb5c02a58c',
+    uuid: crypto.randomUUID(),
     image: 'assets/images/strawberry-donut.png',
     name: 'Strawberry Milkshake Donut',
     altText: 'Digital art donut with pink frosting and strawberries on top',
@@ -8,9 +8,10 @@ export const menu = [
     price: 7,
     isVegan: false,
     isFood: true,
+    slug: 'strawberry-milkshake-donut',
   },
   {
-    uuid: 'c27a2b16-da1e-4f52-b868-abf2c6720fa9',
+    uuid: crypto.randomUUID(),
     image: 'assets/images/caramel-peanut-donut.png',
     name: 'Peanut Caramel Donut',
     altText:
@@ -19,9 +20,10 @@ export const menu = [
     price: 7,
     isVegan: true,
     isFood: true,
+    slug: 'caramel-peanut-donut',
   },
   {
-    uuid: 'f1f4ab39-ce2b-4ccb-816b-baaa1a79ab86',
+    uuid: crypto.randomUUID(),
     image: 'assets/images/blueberry-donut.png',
     name: 'Blueberry Donut',
     altText:
@@ -30,9 +32,10 @@ export const menu = [
     price: 7,
     isVegan: true,
     isFood: true,
+    slug: 'blueberry-donut',
   },
   {
-    uuid: '516ba349-3ec0-463d-b831-c2e3425d10ab',
+    uuid: crypto.randomUUID(),
     image: 'assets/images/cappuccino-cup.png',
     name: 'Cappuccino',
     altText:
@@ -41,9 +44,10 @@ export const menu = [
     price: 5,
     isVegan: false,
     isFood: false,
+    slug: 'cappuccino',
   },
   {
-    uuid: '4fb25831-6d9e-4aa0-9f29-56da3d14be63',
+    uuid: crypto.randomUUID(),
     image: 'assets/images/oat-milk.png',
     name: 'Oat Milk',
     altText:
@@ -52,5 +56,6 @@ export const menu = [
     price: 0,
     isVegan: true,
     isFood: false,
+    slug: 'oat-milk',
   },
 ];
